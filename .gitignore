@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+.ipynb_checkpoints/
+outputs/
+data/
+*.pt
+*.pth
+*.npz
+*.edf
+*.mat
+.DS_Store

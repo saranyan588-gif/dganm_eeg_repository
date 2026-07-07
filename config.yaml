@@ -1,0 +1,58 @@
+project:
+  name: DGANM_EEG_Domain_Adaptation
+  manuscript_title: EEG-Based Seizure Detection Using Deep Generative Models with Domain Adaptation for Cross-Subject Generalization
+  seed: 42
+  output_dir: outputs
+
+data:
+  # Accepted modes: synthetic or npz
+  # synthetic: creates a small deterministic EEG-like dataset for pipeline verification.
+  # npz: uses a prepared file with arrays: windows [N, C, T], labels [N], subject_ids [N].
+  mode: synthetic
+  npz_path: data/processed/eeg_windows.npz
+  synthetic_subjects: 6
+  synthetic_windows_per_subject: 90
+  sampling_rate: 256
+  window_seconds: 10
+  n_channels: 19
+  n_classes: 2
+  target_label_name: preictal
+  non_target_label_name: interictal
+  # Leave-one-subject-out evaluation uses these IDs if present; otherwise all available subjects are used.
+  loso_subjects: []
+
+preprocessing:
+  notch_hz: 50.0
+  bandpass_low_hz: 0.5
+  bandpass_high_hz: 70.0
+  minmax_range: [-1.0, 1.0]
+
+model:
+  generator_filters: [64, 128, 256]
+  discriminator_filters: [64, 128, 256]
+  classifier_filters: [64, 128]
+  classifier_hidden: 128
+  dropout: 0.50
+  kernel_size: 3
+
+training:
+  epochs: 8
+  smoke_test_epochs: 2
+  batch_size: 72
+  learning_rate: 0.001
+  momentum: 0.9
+  weight_decay: 0.0001
+  lambda_adv: 1.0
+  lambda_cls: 1.0
+  lambda_mmd: 0.05
+  real_label_smooth: 0.90
+  fake_label_value: -0.90
+  validation_fraction: 0.15
+  patience: 10
+  num_workers: 0
+  device: auto
+
+figures:
+  dpi: 600
+  format: png
+  save_svg: true
