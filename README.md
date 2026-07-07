@@ -147,16 +147,5 @@ The primary cross-subject evaluation uses leave-one-subject-out testing. Target-
 
 These figures are produced directly from numerical results and are suitable for manuscript replacement because they are not resized screenshots.
 
-## Code Availability Statement for Manuscript
 
-A reviewer-facing statement is provided in:
 
-```text
-assets/CODE_AVAILABILITY.md
-```
-
-After uploading this repository to GitHub, create a versioned release and archive it through a DOI-assigning repository such as Zenodo. Replace the placeholder in the code availability statement with the generated repository DOI.
-
-## Important Reproducibility Note
-
-The synthetic mode validates software execution only. Manuscript-level numerical claims must be generated with the public CHB-MIT and SIENA datasets using the same preprocessing and LOSO evaluation protocol.
